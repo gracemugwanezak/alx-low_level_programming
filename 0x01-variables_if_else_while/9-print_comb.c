@@ -1,19 +1,19 @@
-#include<stdio.h>
-#include<unistd.h>
+#include <stdio.h>
 /**
- * main - Entry point
- * prints all possible combinations of single-digit numbers
+ * main - main function
+ *
  * Return: 0
  */
 int main(void)
 {
-	int sd;
+	int i = 0;
 
-	for (sd = '0'; sd <= '9'; sd++)
+	for (i = 10; i < 99; i++)
 	{
+		putchar(i);
 		putchar(',');
-		putchar(' ');
 	}
+
 	putchar('\n');
 	return (0);
 }
