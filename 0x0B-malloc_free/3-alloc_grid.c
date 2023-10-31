@@ -1,41 +1,40 @@
-#include "main.h"
 #include <stdlib.h>
 
 /**
- * alloc_grid - print a gring of integers
- * @width: width of a grid
- * @height: height of a grid
- * Return: a grid or NULL on failure
+ * alloc_grid - allocates a matrix of integers
+ *
+ * @width: width of grid
+ * @height: height of grid
+ *
+ * Return: void
  */
-
 int **alloc_grid(int width, int height)
 {
 	int **grid;
-	int a, b;
+	int i, j;
 
 	if (width <= 0 || height <= 0)
 		return (NULL);
-	grid = malloc(height * sizeof(int *));
 
+	grid = malloc(height * sizeof(int *));
 	if (grid == NULL)
 		return (NULL);
 
-	for (a = 0; a < height; a++)
+	for (i = 0; i < height; i++)
 	{
-		grid[a] = malloc(width * sizeof(int));
-
-		if (grid[a] == NULL)
+		grid[i] = malloc(width * sizeof(int));
+		if (grid[i] == NULL)
 		{
-			for (; a >= 0; a--)
-				free(grid[a]);
+			while (i >= 0)
+				free(grid[i--]);
 			free(grid);
 			return (NULL);
 		}
+
+
+		for (j = 0; j < width; j++)
+			grid[i][j] = 0;
 	}
-	for (a = 0; a < height; a++)
-	{
-		for (b = 0; b < width; b++)
-			grid[b][b] = 0;
-	}
+
 	return (grid);
 }
